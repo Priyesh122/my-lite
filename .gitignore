@@ -1,0 +1,5 @@
+_output/
+.jupyterlite.doit.db
+content/.ipynb_checkpoints/
+site/
+*.tgz
