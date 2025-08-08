@@ -9,6 +9,7 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,11 +18,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install jupyterlite jupyterlite-pyodide-kernel jupyterlab
-      - run: jupyter lite build --contents content --output-dir site
+      - run: pip install "jupyterlite==0.6.4" "jupyterlite-pyodide-kernel==0.6.1"
+      # build to the default _output folder (this is what worked locally)
+      - run: jupyter lite build --contents content
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: _output
   deploy:
     environment:
       name: github-pages
